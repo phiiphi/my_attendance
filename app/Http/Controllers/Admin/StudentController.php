@@ -21,9 +21,8 @@ class StudentController extends Controller
         if (! Gate::allows('can_manage_students')) {
             return abort(401);
         }
-    
+
         $student_management = StudentManagement::all();
-    
         return view('admin.student.index', compact('student_management'));
     }
 
@@ -149,7 +148,7 @@ class StudentController extends Controller
 
         return redirect()->route('admin.permissions.index');
     }
-    
+
     public function massDestroy(Request $request)
     {
         Permission::whereIn('id', request('ids'))->delete();

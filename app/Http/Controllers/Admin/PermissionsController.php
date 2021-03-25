@@ -23,7 +23,7 @@ class PermissionsController extends Controller
     }
     $permissions = Permission::all();
     return view('admin.permissions.index', compact('permissions'));
-    
+
     }
 
     /**
@@ -50,10 +50,11 @@ class PermissionsController extends Controller
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
-        Permission::create($request->all());
 
+        Permission::create($request->all());
         return redirect()->route('admin.permissions.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -63,6 +64,7 @@ class PermissionsController extends Controller
      */
     public function show(Permission $permission)
     {
+
         if (! Gate::allows('users_manage')) {
             return abort(401);
         }
@@ -117,7 +119,7 @@ class PermissionsController extends Controller
         $permission->delete();
         return redirect()->route('admin.permissions.index');
     }
-    
+
     public function massDestroy(Request $request)
     {
         Permission::whereIn('id', request('ids'))->delete();
