@@ -10,7 +10,7 @@
                     {{ trans('global.dashboard') }}
                 </a>
             </li>
-            @can('users_manage')
+            @can('can_manage_users')
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link  nav-dropdown-toggle" href="#">
                         <i class="fa-fw fas fa-users nav-icon">
@@ -46,34 +46,61 @@
                     </ul>
                 </li>
             @endcan
-            @can('can_manage_students')
+            @can('can_manage_ticketing')
             <li class="nav-item nav-dropdown">
                 <a class="nav-link  nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-users nav-icon">
-
                     </i>
-                    {{ trans('cruds.students.title') }}
+                    Ticket Management
                 </a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                        <a href="{{ route("admin.student.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                        <a href="{{ route("admin.ticketing.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
                             <i class="fa-fw fas fa-unlock-alt nav-icon">
 
                             </i>
-                            {{ trans('cruds.students.fields.view') }}
+                            View Tickets
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route("admin.student.create") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
+                        <a href="{{ route("admin.ticketing.create") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
                             <i class="fa-fw fas fa-briefcase nav-icon">
 
                             </i>
-                            {{ trans('cruds.students.fields.add') }}
+                            Sell Tickets
                         </a>
                     </li>
                 </ul>
             </li>
         @endcan
+        @can('can_manage_drivers')
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link  nav-dropdown-toggle" href="#">
+                    <i class="fa-fw fas fa-users nav-icon"></i>
+                    Manage Drivers
+                </a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="{{ route("admin.driver.index") }}" class="nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'active' : '' }}">
+                            <i class="fa-fw fas fa-unlock-alt nav-icon">
+
+                            </i>
+                            View Drivers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route("admin.driver.create") }}" class="nav-link {{ request()->is('admin/roles') || request()->is('admin/roles/*') ? 'active' : '' }}">
+                            <i class="fa-fw fas fa-briefcase nav-icon">
+
+                            </i>
+                            Add Drivers
+
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endcan
+        
             <li class="nav-item">
                 <a href="{{ route('auth.change_password') }}" class="nav-link">
                     <i class="nav-icon fas fa-fw fa-key">

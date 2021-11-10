@@ -50,8 +50,6 @@
                 {{ trans('global.back_to_list') }}
             </a>
         </div>
-
-
     </div>
 </div>
 @endsection

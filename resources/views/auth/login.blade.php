@@ -14,7 +14,6 @@
                         {{ csrf_field() }}
                         <h1>{{ env('APP_NAME', 'Permissions Manager') }}</h1>
                         <p class="text-muted">Login</p>
-
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">

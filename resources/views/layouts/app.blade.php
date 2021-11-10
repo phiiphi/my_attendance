@@ -21,28 +21,21 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
-        <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+
         <!-- Styles -->
-        {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}"> 
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+    <body class="header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden login-page">
+    <div class="app flex-row align-items-center">
+        <div class="container">
+            @yield("content")
         </div>
-    </body>
+    </div>
+    @yield('scripts')
+</body>
+
 </html>
+

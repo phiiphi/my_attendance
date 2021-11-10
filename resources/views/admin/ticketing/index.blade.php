@@ -3,13 +3,13 @@
 {{-- <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
         <a class="btn btn-success" href="#">
-            {{ trans('global.add') }} {{ trans('cruds.student_manage.title_singular') }}
+            {{ trans('global.add') }} {{ trans('cruds.ticket.title_singular') }}
         </a>
     </div>
 </div> --}}
 <div class="card">
     {{-- <div class="card-header">
-        {{ trans('cruds.student_manage.title_singular') }} {{ trans('global.list') }}
+        {{ trans('cruds.ticket.title_singular') }} {{ trans('global.list') }}
     </div> --}}
 
     <div class="card-body">
@@ -21,16 +21,16 @@
 
                         </th>
                         <th>
-                            Student ID
+                            TICKETS NUMBER
                         </th>
                         <th>
-                            Surname
+                            TICKET DESCRIPTION
                         </th>
                         <th>
-                            Other Name
+                            PRICE
                         </th>
                         <th>
-                            Program
+                            CAR NUMBER
                         </th>
                         <th>
                             Action
@@ -39,33 +39,36 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($student_management as $key => $student_manage)
-                        <tr data-entry-id="{{ $student_manage->id }}">
+                    @foreach($tickets as $key => $ticket)
+                        <tr data-entry-id="{{ $ticket->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $student_manage->student_id ?? '' }}
+                                {{ $ticket->ticket_number ?? '' }}
                             </td>
                             <td>
-                                {{ $student_manage->surname ?? '' }}
+                                {{ $ticket->price ?? '' }}
+                            </td>
+                            <td> 
+                            {{ $ticket->ticket_description ?? '' }}
+
                             </td>
                             <td>
-                                {{ $student_manage->other_name ?? '' }}
+                            {{ $ticket->car_number ?? '' }}
+
                             </td>
+
                             <td>
-                                {{ $student_manage->program ?? '' }}
-                            </td>
-                            <td>
-                                <a class="btn btn-xs btn-primary" href="{{ route('admin.student.show', $student_manage->id) }}">
+                                <!-- <a class="btn btn-xs btn-primary" href="{{ route('admin.ticketing.show', $ticket->id) }}">
                                     {{ trans('global.view') }}
-                                </a>
+                                </a> -->
 
-                                <a class="btn btn-xs btn-info" href="{{ route('admin.student.edit', $student_manage->id) }}">
+                                <a class="btn btn-xs btn-info" href="{{ route('admin.ticketing.edit', $ticket->id) }}">
                                     {{ trans('global.edit') }}
                                 </a>
 
-                                <form action="{{ route('admin.student.destroy', $student_manage->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                <form action="{{ route('admin.companies.destroy', $ticket->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
