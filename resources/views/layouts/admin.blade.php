@@ -57,6 +57,7 @@
 
     <div class="app-body">
         @include('partials.menu')
+        @include('sweetalert::alert')
         <main class="main">
 
 

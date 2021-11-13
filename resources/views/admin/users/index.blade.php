@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-@can('users_manage')
+@can('can_manage_users')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("admin.users.create") }}">
@@ -91,7 +91,7 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('users_manage')
+@can('can_manage_users')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,

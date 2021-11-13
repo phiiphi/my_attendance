@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Http\Requests\Admin\StoreUsersRequest;
 use App\Http\Requests\Admin\UpdateUsersRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class UsersController extends Controller
@@ -52,6 +53,9 @@ class UsersController extends Controller
      */
     public function store(StoreUsersRequest $request)
     {
+
+
+    
         if (! Gate::allows('can_manage_users')) {
             return abort(401);
         }

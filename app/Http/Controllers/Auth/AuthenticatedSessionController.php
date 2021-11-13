@@ -7,6 +7,11 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Hash;
+use RealRashid\SweetAlert\Facades\Alert;
+
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -26,13 +31,29 @@ class AuthenticatedSessionController extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
+    
     public function store(LoginRequest $request)
     {
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $user = User::where('email', '=', $email)->first();
+
+        if (!$user) 
+        {
+            Alert::error('Oops', 'Email Not Recognised, Contact Admin');
+            return redirect()->route('login');
+        }
+
+        if (!Hash::check($password, $user->password)) 
+        {
+            Alert::error('Oops', 'Incorrect Password, Contact Admin');
+            return redirect()->route('login');     
+        }
+
         $request->authenticate();
-
         $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        Alert::success('Congrats', 'Login Successful');
+        return redirect()->intended(RouteServiceProvider::HOME);      
     }
 
     /**

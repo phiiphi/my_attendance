@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Driver;
 use Illuminate\Support\Facades\Gate;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DriverController extends Controller
 {
@@ -66,6 +67,7 @@ class DriverController extends Controller
         $driver->car_number       = $request->car_number;
         $driver->save();
 
+        Alert::success('Congrats', 'Driver added Successful');
         return redirect()->route('admin.driver.index');
     }
 
@@ -117,6 +119,9 @@ class DriverController extends Controller
        $driver->lincense_weight  = $request->input('lincense_weight');
        $driver->car_number       = $request->input('car_number');
        $driver->save();
+
+       Alert::success('Congrats', 'Operation Successful');
+
 
        return redirect()->route('admin.driver.index');
 }

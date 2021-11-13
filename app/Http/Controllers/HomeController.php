@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\Driver;
+use App\Models\ActiveUsers;
+use App\Models\Ticketing;
+use Illuminate\Support\Facades\Session;
+
 
 class HomeController extends Controller
 {
@@ -24,6 +31,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-    }
+    #current login user details
+
+     $users = Auth::user()->count();
+     
+     $welcome   = 'Welcome';
+     $msg       = ', Enjoy Adminstrating.';
+     #total student
+     $driver = Driver::all()->count();
+     $ticket = Ticketing::all()->count();
+
+    return view('home',compact('driver','ticket','users'));
+}
 }
